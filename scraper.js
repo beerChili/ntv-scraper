@@ -9,10 +9,12 @@ const request = require('request'),
 function GET(url, timeout = 0) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
+            debug('=> REQ %s', url)
             request(url, (err, response, body) => {
+                debug('<= RES %s', url)
                 if (err) return reject(err)
                 if (response.statusCode == 200) return resolve(cheerio.load(response.body))
-                else return reject(response.toJSON())
+                else return reject(new Error(`status code: ${response.statusCode}, url: ${response.request.uri.href}`))
             })
         }, timeout)
     })
@@ -24,7 +26,7 @@ function getArticleURLs(source, date) {
     source = source.toUpperCase()
     return new Promise((resolve, reject) => {
         if (!newspapers.hasOwnProperty(source)) return reject(`Scraping for ${source} is not implemented`)
-        debug('Get $s articles for %s', source, date.toDateString())
+        debug('Get %s articles from %s', source, date.toDateString())
         GET(newspapers[source].getArchiveUrl(date))
             .then($ => resolve(newspapers[source].parseArchive($)))
             .catch(err => reject(err))
