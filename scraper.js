@@ -2,7 +2,7 @@
 
 const request = require('request'),
     cheerio = require('cheerio'),
-    check = require('check-types'),
+    assert = require('check-types').assert,
     debug = require('debug')('scraper'),
     newspapers = require('./lib/newspapers')
 
@@ -19,8 +19,8 @@ function GET(url, timeout = 0) {
 }
 
 function getArticleURLs(source, date) {
-    check.assert.nonEmptyString(source)
-    check.assert.date(date)
+    assert.nonEmptyString(source)
+    assert.date(date)
     source = source.toUpperCase()
     return new Promise((resolve, reject) => {
         if (!newspapers.hasOwnProperty(source)) return reject(`Scraping for ${source} is not implemented`)
@@ -32,7 +32,7 @@ function getArticleURLs(source, date) {
 }
 
 function getArticle(url, timeout = 0) {
-    check.assert.nonEmptyString(url)
+    assert.nonEmptyString(url)
     let source
     for (let key in newspapers) {
         if (newspapers.hasOwnProperty(key) && url.startsWith(newspapers[key].BASE_URL)) {

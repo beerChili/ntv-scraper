@@ -3,24 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "scraper.js",
-  "scripts": {},
-  "author": "Eugen Liebreich",
-  "license": "ISC",
-  "repository": "git+ssh://git@github.com:liebreich/ntv-scraper.git",
   "dependencies": {
     "check-types": "^7.0.0",
     "cheerio": "^0.20.0",
+    "debug": "^2.2.0",
     "moment": "^2.14.1",
     "request": "^2.72.0",
     "require-directory": "^2.1.1",
-    "util": "^0.10.3",
-    "debug": "^2.2.0"
+    "util": "^0.10.3"
   },
   "devDependencies": {},
-  "jshintConfig": {
-    "esversion": 6,
-    "strict": "global",
-    "asi": "true",
-    "node": "true"
-  }
+  "scripts": {},
+  "repository": "git+ssh://git@github.com/liebreich/ntv-scraper.git",
+  "author": "Eugen Liebreich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liebreich/ntv-scraper/issues"
+  },
+  "homepage": "https://github.com/liebreich/ntv-scraper#readme"
 }
